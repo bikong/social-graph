@@ -97,6 +97,8 @@ class Graph(object):
             b=random.choice(self.users_list)
             if a==b:
                 continue
+            elif a.is_friend(b) or b.is_friend(a):
+                continue 
             else :
                 a.friends_list.append(b)
                 b.friends_list.append(a)
@@ -151,6 +153,8 @@ class Graph(object):
                 counter=collections.Counter(self.users_list[i].tech_list)
                 if (counter.most_common(1)[0][1]==1 and self.users_list[i].tech !=None):
                     self.users_list[i].temp_tech=self.users_list[i].tech
+                elif(counter.most_common(1)[0][1]==1 and self.users_list[i].tech ==None):
+                    self.users_list[i].temp_tech == random.choice(self.users_list[i].tech_list)
                 else:
 ####                    print((self.users_list[i].tech_list).count(k))
                     self.users_list[i].temp_tech=counter.most_common(1)[0][0]
